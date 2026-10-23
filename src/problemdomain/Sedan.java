@@ -5,9 +5,9 @@ public class Sedan extends Vehicle {
     // extra field/attribute of the Sedan subclass
     private char TrunkSize;
 
-    // constructor for Sedan class
-    public Sedan (long carID, String VehicleType, String subType, int speed, double fuel, int seats, int year, String drivetrain, int price, int quantity, char TrunkSize) {
-        super (carID, VehicleType, subType, speed, fuel, seats, year, drivetrain, price, quantity);
+    // constructor for Sedan subclass
+    public Sedan (long carID, String vehicleType, String subType, int speed, double fuel, int seats, int year, String drivetrain, int price, int quantity, char TrunkSize) {
+        super (carID, vehicleType, subType, speed, fuel, seats, year, drivetrain, price, quantity);
         this.TrunkSize = TrunkSize;
     }
 
@@ -31,11 +31,11 @@ public class Sedan extends Vehicle {
 
     @Override
     public void purchase() {
-
+        System.out.println("Purchase made");
     }
 
     @Override
     public String toString() {
-
+        return "";
     }
 }
