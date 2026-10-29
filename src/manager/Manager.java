@@ -17,7 +17,7 @@ import java.io.File;
 
 public class Manager {
 
-    // create the list of vehicles of type "Vehicle" --> polymorphism will allow us to store different vehicleType inside
+    // create the master list of vehicles of type "Vehicle" --> polymorphism will allow us to store different vehicleType inside
     private ArrayList<Vehicle> vehicles = new ArrayList<>();
 
     // method that reads vehicles.txt and parses into a single list
@@ -53,41 +53,44 @@ public class Manager {
                 int price = Integer.parseInt(vehicleLineParts[8].trim());
                 int quantity = Integer.parseInt(vehicleLineParts[9].trim());
 
+                // also get the first digit of the carID so that we can do the condition check below
+                char firstDigit = vehicleLineParts[0].trim().charAt(0);
+
                 // then depending on the vehicle type, parse and store the extra attributes of that type in their respective variables
                 // and create object of that vehicle type, store it in the list "vehicles" of "Vehicle" type
-                // note that we can't do this step outside since the variables inside if/else statements are local to it
-                if (vehicleType.equals("Sedan")) {
+                // note that we can't do this step outside since the variables like trunkSize inside if/else statements are local to it
+                if (firstDigit == '1') { // 1 == Sedan
                     char trunkSize = vehicleLineParts[10].trim().charAt(0);
                     vehicles.add(new Sedan(carID, vehicleType, subType, speed, fuel, seats, year, driveTrain, price, quantity, trunkSize));
-                } else if (vehicleType.equals("Hatchback")) {
+                } else if (firstDigit == '2') { // 2 == Hatchback
                     char hatchType = vehicleLineParts[10].trim().charAt(0);
                     vehicles.add(new Hatchback(carID, vehicleType, subType, speed, fuel, seats, year, driveTrain, price, quantity, hatchType));
-                } else if (vehicleType.equals("Pickup Truck")) {
-                    String cargoBedType = vehicleLineParts[10].trim();
-                    int cargoCapacity = Integer.parseInt(vehicleLineParts[11].trim());
-                    vehicles.add(new PickupTruck(carID, vehicleType,subType, speed, fuel, seats, year, driveTrain, price, quantity, cargoBedType, cargoCapacity));
-                } else if (vehicleType.equals("Hybrid")) {
+                } else if (firstDigit == '3') { // 3 == SUV
+                    vehicles.add(new SUV(carID, vehicleType, subType, speed, fuel, seats, year, driveTrain, price, quantity));
+                } else if (firstDigit == '4' || firstDigit == '5') { // 4 or 5 == Hybrid
                     String powerTrain = vehicleLineParts[10].trim();
                     int electricRange = Integer.parseInt(vehicleLineParts[11].trim());
                     vehicles.add(new Hybrid(carID, vehicleType, subType, speed, fuel, seats, year, driveTrain, price, quantity, powerTrain, electricRange));
-                } else if (vehicleType.equals("SUV")) {
-                    vehicles.add(new SUV(carID, vehicleType, subType, speed, fuel, seats, year, driveTrain, price, quantity));
+                } else if (firstDigit == '6') { // 6 == PickupTruck
+                    String cargoBedType = vehicleLineParts[10].trim();
+                    int cargoCapacity = Integer.parseInt(vehicleLineParts[11].trim());
+                    vehicles.add(new PickupTruck(carID, vehicleType,subType, speed, fuel, seats, year, driveTrain, price, quantity, cargoBedType, cargoCapacity));
                 }
+                // now we have an ArrayList "vehicles" of superclass Vehicle type with different subclass vehicles inside of it
                 // next create objects of each vehicle type and store it in list "vehicles"
                 /* note to self: the concept of polymorphism is being applied here since vehicles array is of "Vehicle" type
                 yet, it stores many different types of vehicles... we can call the same methods on Vehicle but get unique results for each vehicle type
                 */
             }
-            System.out.println(vehicles);
+            System.out.println(vehicles); // note for later: modify toString override of all vehicle subclass to fix this output
         } catch (FileNotFoundException error) {
             System.out.println("Couldn't find the file!");
         }
     }
 
 
-
-
     // method that allows customer to purchase a vehicle
+
 
 
     // method that prompts a customer to enter vehicle type, performs case-insensitive search, and displays all vehicles of that type
