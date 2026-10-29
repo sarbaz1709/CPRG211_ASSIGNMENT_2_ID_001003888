@@ -17,6 +17,8 @@ import java.io.File;
 
 public class Manager {
 
+    private ArrayList<Vehicle> vehiclesList = new ArrayList<>();
+
     // method that reads vehicles.txt and parses into a single list
     public void loadVehicleList() {
 
@@ -27,7 +29,27 @@ public class Manager {
             Scanner fileReader = new Scanner(new File("res/vehicles.txt"));
             while (fileReader.hasNextLine()) {
                 String vehicleLine = fileReader.nextLine();
+
+                if (vehicleLine.trim().isEmpty()) {
+                    continue;
+                }
+
+                // split the read line into the different parts (attributes)
                 String[] vehicleLineParts = vehicleLine.split(";");
+
+                // put those parts into their respective variables
+                long duration = Long.parseLong(vehicleLineParts[0].trim());
+                String vehicleType = vehicleLineParts[1].trim();
+                String subType = vehicleLineParts[2].trim();
+                int speed = Integer.parseInt(vehicleLineParts[3].trim());
+                double fuel = Double.parseDouble(vehicleLineParts[4].trim());
+                int seats = Integer.parseInt(vehicleLineParts[5].trim());
+                int year = Integer.parseInt(vehicleLineParts[6].trim());
+                String drivetrain = vehicleLineParts[7].trim();
+                int price = Integer.parseInt(vehicleLineParts[8].trim());
+                int quantity = Integer.parseInt(vehicleLineParts[9].trim());
+                
+
 
             }
         } catch (FileNotFoundException error) {
