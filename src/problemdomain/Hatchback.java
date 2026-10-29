@@ -3,20 +3,20 @@ package problemdomain;
 public class Hatchback extends Vehicle {
 
     // extra field/attribute of the hatchback subclass
-    private char HatchType;
+    private char hatchType;
 
     // constructor for HatchBack subclass
-    public Hatchback(long carID, String vehicleType, String subType, int speed, double fuel, int seats, int year, String drivetrain, int price, int quantity, char HatchType) {
+    public Hatchback(long carID, String vehicleType, String subType, int speed, double fuel, int seats, int year, String drivetrain, int price, int quantity, char hatchType) {
         super(carID, vehicleType, subType, speed, fuel, seats, year, drivetrain, price, quantity);
-        this.HatchType = HatchType;
+        this.hatchType = hatchType;
     }
 
     // extra getter/setter for HatchType
     public char getHatchType() {
-        return HatchType;
+        return hatchType;
     }
-    public void setHatchType(char HatchType) {
-        this.HatchType = HatchType;
+    public void setHatchType(char hatchType) {
+        this.hatchType = hatchType;
     }
 
     // override the 3 abstract Vehicle methods
@@ -36,7 +36,7 @@ public class Hatchback extends Vehicle {
 
     @Override
     public String toString() {
-        return "";
+        return "Hatchback";
     }
 
 

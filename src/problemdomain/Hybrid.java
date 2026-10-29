@@ -3,28 +3,28 @@ package problemdomain;
 public class Hybrid extends Vehicle {
 
     // extra fields/attributes for SUV subclass
-    private String PowerTrain;
-    private int ElectricRange;
+    private String powerTrain;
+    private int electricRange;
 
     // constructor for SUV subclass
-    public Hybrid (long carID, String vehicleType, String subType, int speed, double fuel, int seats, int year, String drivetrain, int price, int quantity, String PowerTrain, int ElectricRange) {
-        super(carID, vehicleType, subType, speed, fuel, seats, year, drivetrain, price, quantity);
-        this.PowerTrain = PowerTrain;
-        this.ElectricRange = ElectricRange;
+    public Hybrid (long carID, String vehicleType, String subType, int speed, double fuel, int seats, int year, String driveTrain, int price, int quantity, String powerTrain, int electricRange) {
+        super(carID, vehicleType, subType, speed, fuel, seats, year, driveTrain, price, quantity);
+        this.powerTrain = powerTrain;
+        this.electricRange = electricRange;
     }
 
-    // extra getter/setter
+    // extra getters/setters
     public String getPowerTrain() {
-        return PowerTrain;
+        return powerTrain;
     }
     public void setPowerTrain() {
-        this.PowerTrain = PowerTrain;
+        this.powerTrain = powerTrain;
     }
     public int getElectricRange() {
-        return ElectricRange;
+        return electricRange;
     }
     public void setElectricRange(int ElectricRange) {
-        this.ElectricRange = ElectricRange;
+        this.electricRange = ElectricRange;
     }
 
     // override the 3 abstract Vehicle methods
@@ -42,7 +42,7 @@ public class Hybrid extends Vehicle {
 
     @Override
     public String toString() {
-        return "";
+        return "Hybrid";
     }
 
 }

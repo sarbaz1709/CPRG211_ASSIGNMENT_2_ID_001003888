@@ -10,12 +10,12 @@ public abstract class Vehicle {
     private double fuel;
     private int seats;
     private int year;
-    private String drivetrain;
+    private String driveTrain;
     private int price;
     private int quantity;
 
     // constructor for Vehicle class that subclasses constructors will call using super
-    public Vehicle(long carID, String vehicleType, String subType, int speed, double fuel, int seats, int year, String drivetrain, int price, int quantity){
+    public Vehicle(long carID, String vehicleType, String subType, int speed, double fuel, int seats, int year, String driveTrain, int price, int quantity){
         this.carID = carID;
         this.vehicleType = vehicleType;
         this.subType =  subType;
@@ -23,7 +23,7 @@ public abstract class Vehicle {
         this.fuel = fuel;
         this.seats = seats;
         this.year = year;
-        this.drivetrain = drivetrain;
+        this.driveTrain = driveTrain;
         this. price = price;
         this.quantity = quantity;
     }
@@ -71,11 +71,11 @@ public abstract class Vehicle {
     public void setYear(int year) {
         this.year = year;
     }
-    public String getDrivetrain() {
-        return drivetrain;
+    public String getDriveTrain() {
+        return driveTrain;
     }
-    public void setDrivetrain(String drivetrain) {
-        this.drivetrain = drivetrain;
+    public void setDriveTrain(String driveTrain) {
+        this.driveTrain = driveTrain;
     }
     public int getPrice() {
         return price;

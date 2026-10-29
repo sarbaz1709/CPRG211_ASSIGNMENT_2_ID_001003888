@@ -3,14 +3,28 @@ package problemdomain;
 public class PickupTruck extends Vehicle {
 
     // extra fields/attributes of the PickupTruck subclass
-    private String CargoBedType;
-    private int CargoCapacity;
+    private String cargoBedType;
+    private int cargoCapacity;
 
     // constructor for PickupTruck subclass
-    public PickupTruck(long carID, String VehicleType, String subType, int speed, double fuel, int seats, int year, String drivetrain, int price, int quantity, String CargoBedType, int CargoCapacity) {
-        super(carID, VehicleType, subType, speed, fuel, seats, year, drivetrain, price, quantity);
-        this.CargoBedType = CargoBedType;
-        this.CargoCapacity = CargoCapacity;
+    public PickupTruck(long carID, String vehicleType, String subType, int speed, double fuel, int seats, int year, String driveTrain, int price, int quantity, String cargoBedType, int cargoCapacity) {
+        super(carID, vehicleType, subType, speed, fuel, seats, year, driveTrain, price, quantity);
+        this.cargoBedType = cargoBedType;
+        this.cargoCapacity = cargoCapacity;
+    }
+
+    // extra getters/setters
+    public String getCarboBedType() {
+        return cargoBedType;
+    }
+    public void setCargoBedType(String cardoBedType) {
+        this.cargoBedType = cargoBedType;
+    }
+    public int getCargoCapacity() {
+        return cargoCapacity;
+    }
+    public void setCargoCapacity(int cargoCapacity) {
+        this.cargoCapacity = cargoCapacity;
     }
 
     // overriding the 3 abstract Vehicle methods
@@ -31,6 +45,6 @@ public class PickupTruck extends Vehicle {
 
     @Override
     public String toString() {
-        return "";
+        return "PickupTruck";
     }
 }

@@ -3,8 +3,8 @@ package problemdomain;
 public class SUV extends Vehicle {
 
     // constructor for SUV subclass
-    public SUV(long carID, String VehicleType, String subType, int speed, double fuel, int seats, int year, String drivetrain, int price, int quantity) {
-        super(carID, VehicleType, subType, speed, fuel, seats, year, drivetrain, price, quantity);
+    public SUV(long carID, String vehicleType, String subType, int speed, double fuel, int seats, int year, String driveTrain, int price, int quantity) {
+        super(carID, vehicleType, subType, speed, fuel, seats, year, driveTrain, price, quantity);
     }
 
     // override the 3 abstract Vehicle methods
@@ -21,7 +21,7 @@ public class SUV extends Vehicle {
     }
 
     public String toString() {
-        return "";
+        return "SUV";
     }
 
 
