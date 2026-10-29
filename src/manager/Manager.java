@@ -20,6 +20,9 @@ public class Manager {
     // create the master list of vehicles of type "Vehicle" --> polymorphism will allow us to store different vehicleType inside
     private ArrayList<Vehicle> vehicles = new ArrayList<>();
 
+    // create a scanner for user input to be used later (this is different from the fileReader scanner below)
+    Scanner scanner = new Scanner(System.in);
+
     // method that reads vehicles.txt and parses into list "vehicles" of type "Vehicle"
     public void loadVehicleList() {
 
@@ -83,11 +86,12 @@ public class Manager {
                 */
             }
             System.out.println(vehicles); // note for later: modify toString override of all vehicle subclass to fix this output
+        // catch errors if you can't find the file (have to do this when reading a file)
+            // or throw it to App.java where you can catch it when the method loadVehicleList is called
         } catch (FileNotFoundException error) {
             System.out.println("Couldn't find the file!");
         }
     }
-
 
     // method that allows customer to purchase a vehicle
 
