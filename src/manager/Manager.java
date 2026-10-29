@@ -20,7 +20,7 @@ public class Manager {
     // create the master list of vehicles of type "Vehicle" --> polymorphism will allow us to store different vehicleType inside
     private ArrayList<Vehicle> vehicles = new ArrayList<>();
 
-    // method that reads vehicles.txt and parses into a single list
+    // method that reads vehicles.txt and parses into list "vehicles" of type "Vehicle"
     public void loadVehicleList() {
 
         // need to put the file reading scanner in a try/catch statement to handle file errors
