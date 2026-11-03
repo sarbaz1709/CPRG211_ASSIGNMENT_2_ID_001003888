@@ -16,12 +16,24 @@ public class SUV extends Vehicle {
         }
     }
 
+    @Override
     public void purchase() {
-        System.out.println("Purchase made");
+        setQuantity(getQuantity() -1 );
     }
 
+    @Override
     public String toString() {
-        return "SUV";
+        // SUV has no extra attributes, so it only shows the common Vehicle details
+        return "Car ID:\t\t" + getCarID() +
+                "\nVehicle Type:\t" + getVehicleType() +
+                "\nSub Type:\t" + getSubType() +
+                "\nSpeed:\t\t" + getSpeed() +
+                "\nFuel:\t\t" + getFuel() +
+                "\nNumber of Seats:\t" + getSeats() +
+                "\nYear:\t\t" + getYear() +
+                "\nDrivetrain:\t\t" + getDriveTrain() +
+                "\nPrice:\t\t" + getPrice() +
+                "\nAvailable:\t\t" + getQuantity();
     }
 
 

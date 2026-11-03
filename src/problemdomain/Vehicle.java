@@ -95,12 +95,8 @@ public abstract class Vehicle {
     public abstract void purchase();
     public abstract String toString();
 
-    // formatForFile method which will format the file for the file reader to store it in vehicles.txt
-    public String formateForFile() {
-        if (vehicleType.equals("Sedan")) {
-            return getCarID() + ";" + getVehicleType() + ";" + getSubType() + ";" + getSpeed() + ";" + getFuel() + ";" + getSeats() + ";" + getYear() + ";" + getDriveTrain() + ";" + getPrice() + ";" + getQuantity() + ";";
-        }
-    }
-
-
+    // formatForFile helper method which will format the file for the file reader to store it in vehicles.txt
+    public String formatForFile() {
+            return getCarID() + ";" + getVehicleType() + ";" + getSubType() + ";" + getSpeed() + ";" + getFuel() + ";" + getSeats() + ";" + getYear() + ";" + getDriveTrain() + ";" + getPrice() + ";" + getQuantity();
+    } // note for later: use super and override for each subclass to get extra fields returned
 }

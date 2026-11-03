@@ -14,12 +14,10 @@ public class PickupTruck extends Vehicle {
     }
 
     // extra getters/setters
-    public String getCarboBedType() {
+    public String getCargoBedType() {
         return cargoBedType;
     }
-    public void setCargoBedType(String cardoBedType) {
-        this.cargoBedType = cargoBedType;
-    }
+    public void setCargoBedType(String cargoBedType) { this.cargoBedType = cargoBedType;}
     public int getCargoCapacity() {
         return cargoCapacity;
     }
@@ -40,11 +38,43 @@ public class PickupTruck extends Vehicle {
 
     @Override
     public void purchase() {
-        System.out.println("Purchase is made");
+        setQuantity(getQuantity() -1 );
     }
 
     @Override
-    public String toString() {
-        return "PickupTruck";
+    public String toString() { // note to self: even though toString must return a string and some of these fields being returned are not strings
+                               // they (non-strings) get turned into strings automatically by being concatenated with strings
+                               // (example: carID by itself it will say you are returning a long or something not string)
+        // turn the cargo bed code into its full name for display (Strings are compared with .equals, not ==)
+        String cargoBedTypeName;
+        if (getCargoBedType().equals("SB")) {
+            cargoBedTypeName = "Short Bed";
+        } else if (getCargoBedType().equals("EB")) {
+            cargoBedTypeName = "Extended Bed";
+        } else if (getCargoBedType().equals("DB")) {
+            cargoBedTypeName = "Dump Bed";
+        } else {
+            cargoBedTypeName = "Unknown";
+        }
+
+        return "Car ID:\t\t" + getCarID() +
+                "\nVehicle Type:\t" + getVehicleType() +
+                "\nSub Type:\t" + getSubType() +
+                "\nSpeed:\t\t" + getSpeed() +
+                "\nFuel:\t\t" + getFuel() +
+                "\nNumber of Seats:\t" + getSeats() +
+                "\nYear:\t\t" + getYear() +
+                "\nDrivetrain:\t\t" + getDriveTrain() +
+                "\nPrice:\t\t" + getPrice() +
+                "\nAvailable:\t\t" + getQuantity() +
+                "\nCargo Capacity:\t" + getCargoCapacity() +
+                "\nCargo Bed Type:\t" + cargoBedTypeName;
     }
+
+    // overriding the formatForFile method in parent class to get the extra fields
+    @Override
+    public String formatForFile() {
+        return super.formatForFile() + ";" + getCargoBedType() + ";" + getCargoCapacity();
+    }
+
 }

@@ -37,12 +37,40 @@ public class Hybrid extends Vehicle {
 
     @Override
     public void purchase() {
-        System.out.println("Purchase made");
+        setQuantity(getQuantity() -1 );
     }
 
     @Override
     public String toString() {
-        return "Hybrid";
+        // turn the powertrain code into its full name for display (Strings are compared with .equals, not ==)
+        String powerTrainName;
+        if (getPowerTrain().equals("E")) {
+            powerTrainName = "Series Hybrid";
+        } else if (getPowerTrain().equals("A")) {
+            powerTrainName = "Parallel Hybrid";
+        } else if (getPowerTrain().equals("PHEV")) {
+            powerTrainName = "Plug-in Hybrid";
+        } else {
+            powerTrainName = "Unknown";
+        }
+
+        return "Car ID:\t\t" + getCarID() +
+                "\nVehicle Type:\t" + getVehicleType() +
+                "\nSub Type:\t" + getSubType() +
+                "\nSpeed:\t\t" + getSpeed() +
+                "\nFuel:\t\t" + getFuel() +
+                "\nNumber of Seats:\t" + getSeats() +
+                "\nYear:\t\t" + getYear() +
+                "\nDrivetrain:\t\t" + getDriveTrain() +
+                "\nPrice:\t\t" + getPrice() +
+                "\nAvailable:\t\t" + getQuantity() +
+                "\nPowertrain:\t" + powerTrainName +
+                "\nElectric Range:\t" + getElectricRange();
+    }
+
+    @Override
+    public String formatForFile() {
+        return super.formatForFile() + ";" + getPowerTrain() + ";" + getElectricRange();
     }
 
 }

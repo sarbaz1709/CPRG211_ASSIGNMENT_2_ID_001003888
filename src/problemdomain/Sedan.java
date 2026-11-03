@@ -31,11 +31,41 @@ public class Sedan extends Vehicle {
 
     @Override
     public void purchase() {
-        System.out.println("Purchase made");
+        setQuantity(getQuantity() -1 );
     }
 
     @Override
     public String toString() {
-        return "Sedan";
+        // turn the trunk size letter into its full name for display
+        String trunkSizeName;
+        if (getTrunkSize() == 'L') {
+            trunkSizeName = "Large/spacious Trunk";
+        } else if (getTrunkSize() == 'M') {
+            trunkSizeName = "Moderate Trunk";
+        } else if (getTrunkSize() == 'S') {
+            trunkSizeName = "Small Trunk";
+        } else {
+            trunkSizeName = "Unknown";
+        }
+
+        return "Car ID:\t\t" + getCarID() +
+                "\nVehicle Type:\t" + getVehicleType() +
+                "\nSub Type:\t" + getSubType() +
+                "\nSpeed:\t\t" + getSpeed() +
+                "\nFuel:\t\t" + getFuel() +
+                "\nNumber of Seats:\t" + getSeats() +
+                "\nYear:\t\t" + getYear() +
+                "\nDrivetrain:\t\t" + getDriveTrain() +
+                "\nPrice:\t\t" + getPrice() +
+                "\nAvailable:\t\t" + getQuantity() +
+                "\nTrunk Size:\t" + trunkSizeName;
+    }
+
+    @Override
+    public String formatForFile() {
+        return super.formatForFile() + ";" + getTrunkSize();
     }
 }
+
+
+

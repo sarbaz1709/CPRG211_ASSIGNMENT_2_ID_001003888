@@ -31,14 +31,39 @@ public class Hatchback extends Vehicle {
 
     @Override
     public void purchase(){
-        System.out.println("Purchase made");
-    }
+        setQuantity(getQuantity() -1 );}
 
     @Override
     public String toString() {
-        return "Hatchback";
+        // turn the hatch type letter into its full name for display
+        String hatchTypeName;
+        if (getHatchType() == 'S') {
+            hatchTypeName = "Standard Liftgate";
+        } else if (getHatchType() == 'T') {
+            hatchTypeName = "Split Liftgate";
+        } else if (getHatchType() == 'P') {
+            hatchTypeName = "Power Liftgate";
+        } else {
+            hatchTypeName = "Unknown";
+        }
+
+        return "Car ID:\t\t" + getCarID() +
+                "\nVehicle Type:\t" + getVehicleType() +
+                "\nSub Type:\t" + getSubType() +
+                "\nSpeed:\t\t" + getSpeed() +
+                "\nFuel:\t\t" + getFuel() +
+                "\nNumber of Seats:\t" + getSeats() +
+                "\nYear:\t\t" + getYear() +
+                "\nDrivetrain:\t\t" + getDriveTrain() +
+                "\nPrice:\t\t" + getPrice() +
+                "\nAvailable:\t\t" + getQuantity() +
+                "\nHatch Type:\t" + hatchTypeName;
     }
 
+    @Override
+    public String formatForFile() {
+        return super.formatForFile() + ";" + getHatchType();
+    }
 
 }
 
