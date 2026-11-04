@@ -1,3 +1,10 @@
+/*
+ * Author: Sarbaz Khan
+ * Course: CPRG211 - Assignment 2: Abstract Class and Inheritance
+ * Date: November 2026
+ * Description: Hatchback subclass of Vehicle (car ID starts with 2).
+ *              Adds the hatch type attribute (S, T or P).
+ */
 package problemdomain;
 
 public class Hatchback extends Vehicle {
@@ -30,8 +37,9 @@ public class Hatchback extends Vehicle {
     }
 
     @Override
-    public void purchase(){
-        setQuantity(getQuantity() -1 );}
+    public void purchase() {
+        setQuantity(getQuantity() - 1);
+    }
 
     @Override
     public String toString() {

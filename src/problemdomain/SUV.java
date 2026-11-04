@@ -1,3 +1,10 @@
+/*
+ * Author: Sarbaz Khan
+ * Course: CPRG211 - Assignment 2: Abstract Class and Inheritance
+ * Date: November 2026
+ * Description: SUV subclass of Vehicle (car ID starts with 3).
+ *              It has no extra attributes, only the ones from Vehicle.
+ */
 package problemdomain;
 
 public class SUV extends Vehicle {
@@ -8,6 +15,7 @@ public class SUV extends Vehicle {
     }
 
     // override the 3 abstract Vehicle methods
+    @Override
     public boolean isAvailable() {
         if (getQuantity() > 0) {
             return true;
@@ -18,7 +26,7 @@ public class SUV extends Vehicle {
 
     @Override
     public void purchase() {
-        setQuantity(getQuantity() -1 );
+        setQuantity(getQuantity() - 1);
     }
 
     @Override

@@ -1,3 +1,12 @@
+/*
+ * Author: Sarbaz Khan
+ * Course: CPRG211 - Assignment 2: Abstract Class and Inheritance
+ * Date: November 2026
+ * Description: Abstract parent class for every vehicle type.
+ *              Holds the attributes all vehicles share (car ID, type, sub type,
+ *              speed, fuel, seats, year, drivetrain, price and quantity).
+ *              It is abstract so it can't be created directly.
+ */
 package problemdomain;
 
 public abstract class Vehicle {
@@ -15,16 +24,16 @@ public abstract class Vehicle {
     private int quantity;
 
     // constructor for Vehicle class that subclasses constructors will call using super
-    public Vehicle(long carID, String vehicleType, String subType, int speed, double fuel, int seats, int year, String driveTrain, int price, int quantity){
+    public Vehicle(long carID, String vehicleType, String subType, int speed, double fuel, int seats, int year, String driveTrain, int price, int quantity) {
         this.carID = carID;
         this.vehicleType = vehicleType;
-        this.subType =  subType;
+        this.subType = subType;
         this.speed = speed;
         this.fuel = fuel;
         this.seats = seats;
         this.year = year;
         this.driveTrain = driveTrain;
-        this. price = price;
+        this.price = price;
         this.quantity = quantity;
     }
 
@@ -96,7 +105,8 @@ public abstract class Vehicle {
     public abstract String toString();
 
     // formatForFile helper method which will format the file for the file reader to store it in vehicles.txt
+    // each subclass overrides it and uses super.formatForFile() to add its extra fields
     public String formatForFile() {
-            return getCarID() + ";" + getVehicleType() + ";" + getSubType() + ";" + getSpeed() + ";" + getFuel() + ";" + getSeats() + ";" + getYear() + ";" + getDriveTrain() + ";" + getPrice() + ";" + getQuantity();
-    } // note for later: use super and override for each subclass to get extra fields returned
+        return getCarID() + ";" + getVehicleType() + ";" + getSubType() + ";" + getSpeed() + ";" + getFuel() + ";" + getSeats() + ";" + getYear() + ";" + getDriveTrain() + ";" + getPrice() + ";" + getQuantity();
+    }
 }

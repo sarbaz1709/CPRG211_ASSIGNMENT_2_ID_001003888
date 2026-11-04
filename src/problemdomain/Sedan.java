@@ -1,3 +1,11 @@
+/*
+ * File: Sedan.java
+ * Author: Sarbaz Khan
+ * Course: CPRG211 - Assignment 2: Abstract Class and Inheritance
+ * Date: November 2026
+ * Description: Sedan subclass of Vehicle (car ID starts with 1).
+ *              Adds the trunk size attribute (L, S or M).
+ */
 package problemdomain;
 
 public class Sedan extends Vehicle {
@@ -6,8 +14,8 @@ public class Sedan extends Vehicle {
     private char trunkSize;
 
     // constructor for Sedan subclass
-    public Sedan (long carID, String vehicleType, String subType, int speed, double fuel, int seats, int year, String drivetrain, int price, int quantity, char trunkSize) {
-        super (carID, vehicleType, subType, speed, fuel, seats, year, drivetrain, price, quantity);
+    public Sedan(long carID, String vehicleType, String subType, int speed, double fuel, int seats, int year, String drivetrain, int price, int quantity, char trunkSize) {
+        super(carID, vehicleType, subType, speed, fuel, seats, year, drivetrain, price, quantity);
         this.trunkSize = trunkSize;
     }
 
@@ -31,7 +39,7 @@ public class Sedan extends Vehicle {
 
     @Override
     public void purchase() {
-        setQuantity(getQuantity() -1 );
+        setQuantity(getQuantity() - 1);
     }
 
     @Override

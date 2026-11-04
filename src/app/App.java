@@ -1,3 +1,11 @@
+/*
+ * Author: Sarbaz Khan
+ * Course: CPRG211 - Assignment 2: Abstract Class and Inheritance
+ * Date: November 2026
+ * Description: Driver class for the Drive Masters program.
+ *              Loads the vehicles from vehicles.txt and shows the main menu
+ *              until the user chooses option 5 (Save & Exit).
+ */
 package app;
 
 // import Manager class from manager package
@@ -9,7 +17,7 @@ import java.util.Scanner;
 
 public class App {
     static Manager manager = new Manager(); // create manager class to use the loadVehicle list method
-    static Scanner scanner = new Scanner(System.in);
+    static Scanner scanner = manager.getScanner(); // use the same scanner as the manager (note to self: two scanners reading System.in can lose input)
     public static void main(String[] args) {
         manager.loadVehicleList();
         displayMenu();
@@ -49,6 +57,7 @@ public class App {
                     break;
                 case "5":
                     manager.saveVehicleList();
+                    System.out.println();
                     System.out.println("Goodbye!");
                     isRunning = false;
                     break;

@@ -1,3 +1,13 @@
+/*
+ * Author: Sarbaz Khan
+ * Course: CPRG211 - Assignment 2: Abstract Class and Inheritance
+ * Date: November 2026
+ * Description: Manager class for the Drive Masters program.
+ *              Reads vehicles.txt into one list of Vehicle objects and has the
+ *              methods to purchase a vehicle, display vehicles by type, display
+ *              vehicles by a type-specific attribute, show a random list of
+ *              vehicles, and save the list back to vehicles.txt.
+ */
 package manager;
 
 // import all the classes from problemdomain
@@ -24,6 +34,11 @@ public class Manager {
 
     // create a scanner for user input to be used later (this is different from the fileReader scanner below)
     Scanner scanner = new Scanner(System.in);
+
+    // getter so App.java can use this same scanner for the menu (only one scanner should read from System.in)
+    public Scanner getScanner() {
+        return scanner;
+    }
 
     // method that reads vehicles.txt and parses into list "vehicles" of type "Vehicle"
     public void loadVehicleList() {
@@ -79,7 +94,7 @@ public class Manager {
                 } else if (firstDigit == '6') { // 6 == PickupTruck
                     String cargoBedType = vehicleLineParts[10].trim();
                     int cargoCapacity = Integer.parseInt(vehicleLineParts[11].trim());
-                    vehicles.add(new PickupTruck(carID, vehicleType,subType, speed, fuel, seats, year, driveTrain, price, quantity, cargoBedType, cargoCapacity));
+                    vehicles.add(new PickupTruck(carID, vehicleType, subType, speed, fuel, seats, year, driveTrain, price, quantity, cargoBedType, cargoCapacity));
                 }
                 // now we have an ArrayList "vehicles" of superclass Vehicle type with different subclass vehicles inside of it
 
@@ -87,7 +102,7 @@ public class Manager {
                 yet, it stores many different subclass of Vehicle objects... we can call the same methods on Vehicle but get unique results for each subclass vehicle
                 */
             }
-            System.out.println(vehicles); // note for later: modify toString override of all vehicle subclass to fix this output
+            fileReader.close(); // close the file when we are done reading it
         // catch errors if you can't find the file (have to do this when reading a file)
         // or optionally throw it to App.java where you can catch it when the method loadVehicleList is called (here we did the former)
         } catch (FileNotFoundException error) {
@@ -99,22 +114,23 @@ public class Manager {
     public void purchaseVehicle() {
         System.out.print("Enter CarID: "); // prompt user to enter a car id
         try {
-            int carID = Integer.parseInt(scanner.nextLine()); // store it in carID variable
+            int carID = Integer.parseInt(scanner.nextLine().trim()); // store it in carID variable
+            System.out.println(); // blank line like the sample output
 
-            boolean vehicleFound = false;  // break condition of the loop
+            boolean vehicleFound = false;  // becomes true when we find the car
             for (Vehicle vehicle : vehicles) { // iterate through the list of vehicle objects
                 if (vehicle.getCarID() == carID) { // if a matching car ID is found
                     String vehicleName = vehicle.getVehicleType() + " " + vehicle.getSubType(); // store its name and subtype
 
                     if (vehicle.isAvailable()) { // if it is available (the isAvailable method returns true or false depending on quantity)
                         vehicle.purchase();      // use the purchase() method to decrease quantity
-                        System.out.println("The Vehicle " + vehicleName + " has been purchased.");
+                        System.out.println("The Vehicle \"" + vehicleName + "\" has been purchased.");
                     } else { // otherwise say its not available
-                        System.out.println("The Vehicle " + vehicleName + " is not available.");
+                        System.out.println("The Vehicle \"" + vehicleName + "\" is not available.");
                     }
+                    vehicleFound = true; // found the car
+                    break;               // so stop the loop
                 }
-                vehicleFound = true;
-                break;
             }
             if (!vehicleFound) {
                 System.out.println("No vehicle found with CarID " + carID + ".");
@@ -122,9 +138,9 @@ public class Manager {
         } catch (NumberFormatException error) {
             System.out.println("Invalid CarID. Please enter numbers only.");
         }
+        System.out.println(); // blank line after the message
     }
 
-    // method that prompts a customer to enter vehicle type, performs case-insensitive search, and displays all vehicles of that type
     // method that prompts a customer to enter vehicle type, performs case-insensitive search, and displays all vehicles of that type
     public void displayVehiclesByType() {
         System.out.print("Enter vehicle type to search for: (Sedan, SUV, Hatchback, Pickup Truck and Hybrid) ");
@@ -151,7 +167,7 @@ public class Manager {
     // method that prompts a customer enter a vehicle type and corresponding type specific attribute
     // performs a case in-sensitive search and displays all vehicles of that type and type specific attribute
     public void displayVehiclesByTypeSpecificAttribute() {
-        System.out.println("#\tVehicle Type");
+        System.out.println("# Vehicle Type");
         System.out.println("1\tSedan");
         System.out.println("2\tHatchback");
         System.out.println("3\tSUV");
@@ -225,7 +241,6 @@ public class Manager {
     }
 
     // method that prompts customer to enter number and displays that number of randomly selected vehicles
-    // method that prompts customer to enter number and displays that number of randomly selected vehicles
     public void displayRandomVehicles() {
         System.out.print("Enter number of vehicles to display: ");
 
@@ -252,7 +267,7 @@ public class Manager {
         }
         System.out.println();
 
-        // shuffle a COPY of the list so the original order (which gets saved to the file) stays the same
+        // shuffle a copy of the list so the original order (which gets saved to the file) stays the same
         ArrayList<Vehicle> shuffledVehicles = new ArrayList<>(vehicles);
         Collections.shuffle(shuffledVehicles);
 
@@ -267,19 +282,17 @@ public class Manager {
 
     // method that saves the vehicles stored in the list back to vehicles.txt in the original format
     // upon exiting the program
-    // method that saves the vehicles stored in the list back to vehicles.txt in the original format
-    // upon exiting the program
     public void saveVehicleList() {
         System.out.print("Saving Vehicles...");
 
-        // PrintWriter throws FileNotFoundException just like the Scanner(File) in loadVehicleList
+        // note to self: PrintWriter throws FileNotFoundException just like the Scanner(File) in loadVehicleList
         try {
             PrintWriter fileWriter = new PrintWriter("res/vehicles.txt");
             for (Vehicle vehicle : vehicles) {
                 // formatForFile() puts every attribute back into the semicolon format
                 fileWriter.println(vehicle.formatForFile());
             }
-            fileWriter.close(); // closing the writer is what actually saves everything to the file
+            fileWriter.close(); // note to self: closing the writer is what actually saves everything to the file
             System.out.println(" Done!");
         } catch (FileNotFoundException error) {
             System.out.println(" Couldn't save the file!");

@@ -1,3 +1,10 @@
+/*
+ * Author: Sarbaz Khan
+ * Course: CPRG211 - Assignment 2: Abstract Class and Inheritance
+ * Date: November 2026
+ * Description: PickupTruck subclass of Vehicle (car ID starts with 6).
+ *              Adds the cargo bed type (SB, EB or DB) and cargo capacity attributes.
+ */
 package problemdomain;
 
 public class PickupTruck extends Vehicle {
@@ -17,7 +24,9 @@ public class PickupTruck extends Vehicle {
     public String getCargoBedType() {
         return cargoBedType;
     }
-    public void setCargoBedType(String cargoBedType) { this.cargoBedType = cargoBedType;}
+    public void setCargoBedType(String cargoBedType) {
+        this.cargoBedType = cargoBedType;
+    }
     public int getCargoCapacity() {
         return cargoCapacity;
     }
@@ -29,7 +38,7 @@ public class PickupTruck extends Vehicle {
 
     @Override
     public boolean isAvailable() {
-        if (getQuantity() >0) {
+        if (getQuantity() > 0) {
             return true;
         } else {
             return false;
@@ -38,7 +47,7 @@ public class PickupTruck extends Vehicle {
 
     @Override
     public void purchase() {
-        setQuantity(getQuantity() -1 );
+        setQuantity(getQuantity() - 1);
     }
 
     @Override

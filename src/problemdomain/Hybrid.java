@@ -1,13 +1,20 @@
+/*
+ * Author: Sarbaz Khan
+ * Course: CPRG211 - Assignment 2: Abstract Class and Inheritance
+ * Date: November 2026
+ * Description: Hybrid subclass of Vehicle (car ID starts with 4 or 5).
+ *              Adds the powertrain (E, A or PHEV) and electric range attributes.
+ */
 package problemdomain;
 
 public class Hybrid extends Vehicle {
 
-    // extra fields/attributes for SUV subclass
+    // extra fields/attributes for Hybrid subclass
     private String powerTrain;
     private int electricRange;
 
-    // constructor for SUV subclass
-    public Hybrid (long carID, String vehicleType, String subType, int speed, double fuel, int seats, int year, String driveTrain, int price, int quantity, String powerTrain, int electricRange) {
+    // constructor for Hybrid subclass
+    public Hybrid(long carID, String vehicleType, String subType, int speed, double fuel, int seats, int year, String driveTrain, int price, int quantity, String powerTrain, int electricRange) {
         super(carID, vehicleType, subType, speed, fuel, seats, year, driveTrain, price, quantity);
         this.powerTrain = powerTrain;
         this.electricRange = electricRange;
@@ -17,27 +24,29 @@ public class Hybrid extends Vehicle {
     public String getPowerTrain() {
         return powerTrain;
     }
-    public void setPowerTrain() {
+    public void setPowerTrain(String powerTrain) {
         this.powerTrain = powerTrain;
     }
     public int getElectricRange() {
         return electricRange;
     }
-    public void setElectricRange(int ElectricRange) {
-        this.electricRange = ElectricRange;
+    public void setElectricRange(int electricRange) {
+        this.electricRange = electricRange;
     }
 
     // override the 3 abstract Vehicle methods
     @Override
-    public boolean isAvailable(){
-        if (getQuantity() > 0 ) {
+    public boolean isAvailable() {
+        if (getQuantity() > 0) {
             return true;
-        } else return false;
+        } else {
+            return false;
+        }
     }
 
     @Override
     public void purchase() {
-        setQuantity(getQuantity() -1 );
+        setQuantity(getQuantity() - 1);
     }
 
     @Override
