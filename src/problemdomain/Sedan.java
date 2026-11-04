@@ -1,5 +1,4 @@
 /*
- * File: Sedan.java
  * Author: Sarbaz Khan
  * Course: CPRG211 - Assignment 2: Abstract Class and Inheritance
  * Date: November 2026
